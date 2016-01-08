@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Tutorial</title>
+    <link rel="stylesheet" href="dist/css/bootstrap.css">
+    <link rel="stylesheet" href="dist/css/main.css">
+</head>
+<body ng-controller="MainController as vm">
+<div class="container">
+    <h1>Angular Tutorial</h1>
+    <div>
+        <h2>{{vm.fname}} {{vm.lname}}</h2>
+        <h2 ng-if="!vm.hobby">Hobby: {{vm.hobby}}</h2>
+        <p ng-show="vm.hobby">Hobby: {{vm.hobby}}</p>
+        <p ng-show="!vm.hobby">{{vm.fname}} {{vm.lname}} does not have a hobby.</p>
+    </div>
+    <br><br>
+    <div>
+        <table class="table table-bordered">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Job</th>
+                <th>Age</th>
+            </tr>
+            <tr>
+                <td><input type="text" size="20" ng-model="vm.newUser.fname"></td>
+                <td><input type="text" size="20" ng-model="vm.newUser.lname"></td>
+                <td><input type="text" size="20" ng-model="vm.newUser.job"></td>
+                <td>
+                    <input type="number" size="20" ng-model="vm.newUser.age">
+                    <button class="btn btn-primary btn-sm" ng-click="vm.addUser()">Add User</button>
+                </td>
+            </tr>
+            <tr class="table-row" ng-repeat="u in vm.users track by $index | orderBy:'-age'"
+                ng-class="{
+                'age-20s': (u.age >19) && (u.age < 30),
+                'age-30s': (u.age >29) && (u.age < 40),
+                'age-40s': (u.age >39) && (u.age < 50),
+                'age-50s': (u.age >49) && (u.age < 60)
+
+                }">
+                <td>{{u.fname}}</td>
+                <td>{{u.lname}}</td>
+                <td>{{u.job}}</td>
+                <td>{{u.age}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="dist/js/angular.js"></script>
+<script>
+    angular.module('app', [ ]);
+</script>
+<script src="dist/js/services/data.js"></script>
+<script src="dist/js/services/age-thirty-plus.js"></script>
+<script src="dist/js/controllers/main-controller.js"></script>
+
+</body>
+</html>

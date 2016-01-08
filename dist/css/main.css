@@ -1,0 +1,16 @@
+tr.table-row > td {
+    border-bottom: solid 1px #333333;
+}
+
+.age-20s {
+    background: yellow;
+}
+.age-30s {
+    background: cyan;
+}
+.age-40s {
+    background: lightblue;
+}
+.age-50s {
+    background: pink;
+}
